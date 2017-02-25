@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="prod-show-box">
+
+  <p>
+    <strong>Title:</strong>
+    <%= @todo_item.title %>
+  </p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @todo_item.description %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @todo_item.due_date %>
+</p>
+
+</div>
+
+<strong>Subtasks:</strong>
+<% @todo_item.subtasks.each do |task| %>
+<div class="prod-show-box">
+<strong>Name:</strong>  <%= task.task %> <br>
+<strong>Status:</strong>  <%= task.item %>
+
+</div>
+<% end %>
+
+<h3>New Subtask</h3>
+<%= render 'subtasks/form', subtask: @subtask %>
+
+<%= link_to 'edit', edit_todo_item_path(@todo_item), :class => 'btn btn-primary' %> |
+<%= link_to 'back', todo_items_path, :class => 'btn btn-primary' %>

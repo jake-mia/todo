@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Login', login_path %> |
+<%= link_to 'Logout', logout_path %><br>
+<%= @message %>
+
+<% if is_logged_in? %>
+<% end %>
+
+<h1>Todo Items</h1>
+ <table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due date</th>
+      <% if is_logged_in? %>
+      <th colspan="3"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todo_items.each do |todo_item| %>
+      <% if todo_item.due_date < Time.now
+            mystring = "<tr class='danger'>"
+          else
+            mystring = "<tr>"
+          end %>
+          <%= mystring.html_safe %>
+        <td><%= todo_item.title %></td>
+        <td><%= todo_item.description %></td>
+        <td><%= todo_item.due_date %></td>
+        <% if is_logged_in? %>
+            <td><%= link_to 'Add Sub-Task', todo_item %></td>
+            <td><%= link_to 'Edit', edit_todo_item_path(todo_item) %></td>
+            <td><i class="fa fa-times-circle" aria-hidden="true" style="color:red;"></i>
+            <%= link_to ' Remove', todo_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+
+        <%# @todo_items.each do |item| %>
+          <%# if item.subtasks.length > 0 %>
+            <% todo_item.subtasks.each do |task| %>
+              <% myrow = "<tr><td></td><td align='right'> #{task.task} - - - #{task.item} </td><td> </td></tr>" %>
+              <%= myrow.html_safe %>
+
+            <%# end %>
+          <% end %>
+<% row = '' %>
+        <% end %>
+
+        <%# end %>
+      </tr>
+
+  </tbody>
+</table>
+
+<%= link_to 'New Todo Item', new_todo_item_path, :class => 'btn btn-primary' %>
+<br><br>* Past due item are in red

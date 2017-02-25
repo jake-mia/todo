@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @subtask.task %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @subtask.item %>
+</p>
+
+<p>
+  <strong>Todo item:</strong>
+  <%= @subtask.todo_item %>
+</p>
+
+
+
+<%#= link_to 'add sub task', edit_subtasks_path(@subtask) %>
+<%#= link_to 'edit', edit_subtask_path(@subtask) %>
+<%= link_to 'back', todo_items_path, :class => 'btn btn-primary' %>

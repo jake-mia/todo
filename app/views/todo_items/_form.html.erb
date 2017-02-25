@@ -1,0 +1,35 @@
+
+<%= form_for(todo_item) do |f| %>
+  <% if todo_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todo_item.errors.count, "error") %> prohibited this todo_item from being saved:</h2>
+
+      <ul>
+      <% todo_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div style="border: solid 1px black; width: 50%; padding: 2em; margin: 1em; background-color: #e6e8fa" >
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "form-control"%>
+  </div>
+
+  <div class="field" >
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :due_date %>
+    <%= f.datetime_select :due_date %>
+  </div>
+
+  <div> <!-- class=actions -->
+    <%= f.submit :class => "btn btn-primary"%>
+  </div>
+</div>
+<% end %>
